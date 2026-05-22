@@ -1,14 +1,15 @@
 import { useForm } from "react-hook-form";
 import { FcGoogle } from "react-icons/fc";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Login = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
+    const navigate = useNavigate();
 
     const dummyUser = {
         email: "abc@ab.a",
         username: "aaa",
-        password: "abcd"
+        password: "aaa"
     }
 
     const onSubmit = (user) => {
@@ -17,7 +18,7 @@ const Login = () => {
 
         const isValidPassword = user.password === dummyUser.password;
         if (isValidUser && isValidPassword)
-            alert(`${dummyUser.username} found`)
+            navigate("/dashboard")
         else
             alert("Invalid email or password")
     };
@@ -42,17 +43,17 @@ const Login = () => {
 
                     <input
                         type="text"
-                        className={`border rounded w-full p-2 focus:outline-none ${errors.username ? "border-red-500" : "border-gray-300"
+                        className={`border rounded w-full p-2 focus:outline-none ${errors.identifier ? "border-red-500" : "border-gray-300"
                             }`}
-                        {...register("username", {
-                            required: "Username is required",
+                        {...register("identifier", {
+                            required: "Username/ Email is required",
                         })}
                     />
 
                     <div className="h-5 mt-1">
-                        {errors.username && (
+                        {errors.identifier && (
                             <p className="text-red-500 text-xs">
-                                {errors.username.message}
+                                {errors.identifier.message}
                             </p>
                         )}
                     </div>
