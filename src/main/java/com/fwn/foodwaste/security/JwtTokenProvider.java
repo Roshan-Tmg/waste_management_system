@@ -31,7 +31,7 @@ public class JwtTokenProvider {
         }
 
         public String getUsernameFromToken(String token) {
-            return Jwts.parserBuilder()
+            return Jwts.parser()
                     .setSigningKey(Keys.hmacShaKeyFor(jwtSecret.getBytes()))
                     .build()
                     .parseClaimsJws(token)
@@ -41,10 +41,12 @@ public class JwtTokenProvider {
 
         public boolean validateToken(String token) {
             try {
-                Jwts.parserBuilder()
-                        .setSigningKey(Keys.hmacShaKeyFor(jwtSecret.getBytes()))
+                Jwts.parser()
+                        .verifyWith(Keys.hmacShaKeyFor(jwtSecret.getBytes()))
                         .build()
-                        .parseClaimsJws(token);
+                        .parseClaimsJws(token)
+                        .getPayload();
+
                 return true;
             } catch (JwtException | IllegalArgumentException e) {
                 return false;

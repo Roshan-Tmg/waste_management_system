@@ -3,9 +3,7 @@ package com.fwn.foodwaste.entity;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
-import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -13,6 +11,9 @@ import java.util.Set;
 @Entity
 @Table(name = "users")
 @Getter @Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 @Data
 public class User extends BaseEntity{
 
