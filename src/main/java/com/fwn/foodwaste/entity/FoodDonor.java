@@ -27,7 +27,7 @@ public class FoodDonor extends BaseEntity {
     private String contactEmail;
 
     @NotBlank
-    @Pattern(regexp = "n\\+?[0-9]{7,15}$")
+    @Pattern(regexp = "^\\+?[0-9]{7,15}$")
     @Column(nullable = false)
     private String phone;
 
